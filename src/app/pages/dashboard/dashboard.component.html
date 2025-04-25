@@ -1,0 +1,110 @@
+<div class="grid-container" id="dashboard">
+  <h1 class="mat-h1">Notes App</h1>
+
+  <mat-grid-list [cols]="cols()" rowHeight="1:1">
+    <mat-grid-tile>
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title> Create a New Note </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Title</mat-label>
+            <input matInput [(ngModel)]="title" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Content</mat-label>
+            <textarea matInput [(ngModel)]="content" rows="6"></textarea>
+          </mat-form-field>
+
+          <div class="character-count">Characters: {{ content.length }}</div>
+
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="saveNote()"
+            [disabled]="!title || !content"
+          >
+            Save Note
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title class="pb"> Your Notes </mat-card-title>
+          <mat-card-title
+            ><mat-form-field appearance="fill" class="full-width">
+              <mat-label>Search</mat-label>
+              <input matInput [(ngModel)]="searchText" />
+              <button
+                mat-icon-button
+                matSuffix
+                aria-label="Clear"
+                *ngIf="searchText"
+                (click)="searchText = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field></mat-card-title
+          >
+        </mat-card-header>
+
+        <mat-card-content>
+          <div
+            *ngIf="filteredNotes.length; else noNotes"
+            class="notes-container"
+          >
+            <mat-card
+              *ngFor="let note of filteredNotes"
+              class="note-card"
+              appearance="outlined"
+            >
+              <mat-card-header>
+                <mat-card-title class="note-title">{{
+                  note.title
+                }}</mat-card-title>
+              </mat-card-header>
+
+              <mat-card-content class="note-content">
+                <p>{{ note.content }}</p>
+              </mat-card-content>
+
+              <mat-card-actions class="note-actions">
+                <span class="character-count"
+                  >Total Characters:
+                  {{ note.title.length + note.content.length }}</span
+                >
+
+                <span>
+                  <button
+                    mat-icon-button
+                    color="primary"
+                    (click)="edit(note)"
+                    aria-label="Edit"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="delete(note.id)"
+                    aria-label="Delete"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </span>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <ng-template #noNotes>
+            <p>No notes found.</p>
+          </ng-template>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,72 @@
+.sidenav-container {
+  height: 100vh;
+  background: #f4f6f8;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.sidenav {
+  width: 240px;
+  background: #1e88e5;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidenav-toolbar {
+  background: transparent;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+
+  mat-icon {
+    color: white;
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid white;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.nav-item mat-icon {
+  color: #fff;
+}
+
+.sidenav-content {
+  padding: 2rem;
+  background: #fff;
+  flex: 1;
+}
+
+.nav-text {
+  color: #fff;
+}
+.nav-item-custom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+
+  mat-icon {
+    font-size: 20px;
+    vertical-align: middle;
+    color: white;
+    margin-right: 8px;
+  }
+
+  span {
+    color: white;
+    line-height: 1;
+  }
+}
