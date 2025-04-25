@@ -13,6 +13,10 @@
             <input matInput [(ngModel)]="title" />
           </mat-form-field>
 
+          <div class="character-count">
+            Characters Title: {{ title.length }}
+          </div>
+
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Content</mat-label>
             <textarea matInput [(ngModel)]="content" rows="6"></textarea>
@@ -75,8 +79,8 @@
 
               <mat-card-actions class="note-actions">
                 <span class="character-count"
-                  >Total Characters:
-                  {{ note.title.length + note.content.length }}</span
+                  >Characters Title: {{ note.title.length }} | Content:
+                  {{ note.content.length }}</span
                 >
 
                 <span>
